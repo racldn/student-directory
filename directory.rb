@@ -21,23 +21,6 @@ def input_students
     students
 end
 
-
-def sort_by_cohort(input_students)
-  
-  sorted_by_cohort = {}
-  input_students.each do |cohort_sort|
-    cohort = cohort_sort[:cohort]
-    name = cohort_sort[:name]
-  
-      if sorted_by_cohort[cohort] == nil
-        sorted_by_cohort[cohort] = [name]
-      else sorted_by_cohort[cohort].push(name)
-      end
-  end
-  puts sorted_by_cohort.sort
-end
-  
-
 def print_header(students)
   if students.length > 0
     puts "The students of villains academy"
@@ -59,14 +42,9 @@ def print_footer(students)
   end
 end
 # nothing happens until we call the methods
-students = input_students
-print_header(students)
-print(students)
-print_footer(students)
-sort_by_cohort(students)
-
 
 def interactive_menu
+  students = []
   loop do
     # 1. print the menu and ask the user what they want to do
     puts "1. Input the students"
@@ -77,9 +55,11 @@ def interactive_menu
     # 3. do what the user has asked
     case selection
     when "1"
-      # input the students
+      students = input_students
       when "2"
-        # show the students
+        print_header(students)
+        print(students)
+        print_footer(students)
       when "9"
           exit # this will cause the program to terminate
       else
@@ -87,3 +67,8 @@ def interactive_menu
       end    
   end
 end
+
+interactive_menu
+
+
+
