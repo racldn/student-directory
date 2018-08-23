@@ -38,24 +38,52 @@ def sort_by_cohort(input_students)
 end
   
 
-def print_header
-  puts "The students of villains academy"
-  puts "-------------"
+def print_header(students)
+  if students.length > 0
+    puts "The students of villains academy"
+    puts "-------------"
+  end
 end
 def print(students)
-  students.each_with_index do |student, number|
+  if students.length > 0
+    students.each_with_index do |student, number|
     puts "#{number+1}. #{student[:name]} (#{student[:cohort]} cohort)".center(100) # exercises - 1. each with index. previous code = students.each do |student| puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
+end
 def print_footer(students)
-  puts puts "overall we have #{students.count} great students"
+  if students.length > 0
+    puts puts "overall we have #{students.count} great students"
+  else
+    puts "We currently have no students."
+  end
 end
 # nothing happens until we call the methods
 students = input_students
-print_header
+print_header(students)
 print(students)
 print_footer(students)
 sort_by_cohort(students)
 
 
- 
+def interactive_menu
+  loop do
+    # 1. print the menu and ask the user what they want to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit" # 9 because we'll be adding more items later
+    # 2. read the input and save it to a variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+    case selection
+    when "1"
+      # input the students
+      when "2"
+        # show the students
+      when "9"
+          exit # this will cause the program to terminate
+      else
+          puts "I don't know what you meant, try again"
+      end    
+  end
+end
